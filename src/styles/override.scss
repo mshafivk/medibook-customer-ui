@@ -1,0 +1,31 @@
+// Overwrite the --bs-font-sans-serif variable
+$bs-font-sans-serif: "Raleway", sans-serif !default;
+$theme-colors: (
+  primary: #378dbd,
+);
+// Import Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.form-control:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+.form-control {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+
+.btn {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+
+.btn-primary {
+  color: #fff;
+}
