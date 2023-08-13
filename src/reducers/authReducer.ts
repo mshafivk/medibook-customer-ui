@@ -1,12 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { loginUser } from '../thunks/auth';
-
-export interface AuthState {
-  token: string | null;
-  loading: boolean;
-  error: string | null;
-}
+import { AuthState } from './types';
 
 const initialState: AuthState = {
   token: null,

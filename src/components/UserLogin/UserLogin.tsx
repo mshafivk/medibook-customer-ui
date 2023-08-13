@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../auth/AuthContext';
+import { ILoginResponse } from '../../services/userService';
 import { useAppDispatch } from '../../store';
 import { loginUser } from '../../thunks/auth';
+import { IUser } from '../../types/user';
 
 function UserLogin() {
   const [email, setEmail] = useState('');
@@ -8,26 +12,48 @@ function UserLogin() {
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const auth = useAuth();
+  const from = location.state?.from?.pathname || '/';
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      dispatch(loginUser({ email, password }));
-      setError('');
+      /**
+       * TODO - Use when backend is ready
+       */
+      // dispatch(loginUser({ email, password })).then(() => {
+      //   navigate(from, { replace: true });
+      // });
+
+      const user = {
+        username: email,
+        firstName: 'Test User',
+      };
+      auth.signin(user, () => {
+        navigate(from, { replace: true });
+      });
     } catch (errorEx) {
       if (errorEx instanceof ErrorEvent) setError(errorEx.message);
     }
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        <div className="flex flex-row p-3 text-4xl cursor-pointer text-center items-center justify-center">
+          <span className="font-bold underline underline-offset-3 decoration-orange-700">
+            Medi
+          </span>
+          <span className="font-light">Token</span>
+        </div>
+        <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900">
           Log in to your account
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600 max-w">
           Or &nbsp;
-          <span className="font-medium text-blue-600 hover:text-blue-500">
+          <span className="font-medium text-neutral-200 hover:text-sky-200 cursor-pointer">
             create a new account
           </span>
         </p>
@@ -104,7 +130,7 @@ function UserLogin() {
             <div>
               <button
                 type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Log in
               </button>

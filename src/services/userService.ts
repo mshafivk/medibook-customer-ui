@@ -1,4 +1,5 @@
 import { FormData, User } from '../reducers/types';
+import { IUser } from '../types/user';
 import api from './api';
 import { API_URL_PREFIXES } from './api.constants';
 
@@ -10,6 +11,7 @@ export const fetchUser = (id: number) => api.get(`/user/${id}`);
 export interface ILoginResponse {
   success: boolean;
   token: string;
+  user: IUser;
 }
 
 export const login = async (

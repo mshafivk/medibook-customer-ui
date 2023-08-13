@@ -1,14 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { createUser } from '../thunks/user';
-import { FormData as FormDataType } from './types';
-
-interface UserState {
-  status: string; // idle | loading | succeeded | failed
-  error: string | null | undefined;
-  readonly: boolean;
-  userInformation: FormDataType;
-}
+import { UserState } from './types';
 
 const initialState: UserState = {
   status: 'idle',

@@ -4,7 +4,7 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-700 text-white font-bold py-2 px-4 rounded-md;
+    @apply text-sm bg-sky-600 hover:bg-sky-700 text-white font-bold py-2 px-4 rounded-md;
   }
 
   .link {
@@ -12,6 +12,10 @@
   }
 
   .alert-text {
-    @apply text-red-500 text-sm font-medium mt-2;
+    @apply text-red-500 text-sm font-medium;
+  }
+
+  .textbox {
+    @apply appearance-none border rounded w-full px-3 py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-sm;
   }
 }
